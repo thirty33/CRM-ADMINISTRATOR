@@ -1,0 +1,35 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vue-tsc && vite build",
+        "test": "vitest",
+        "coverage": "vitest run --coverage",
+        "preview": "vite preview"
+    },
+    "devDependencies": {
+        "@inertiajs/vue3": "^1.0.0",
+        "@tailwindcss/forms": "^0.5.3",
+        "@vitejs/plugin-vue": "^5.0.0",
+        "@vitest/coverage-v8": "^1.6.0",
+        "@vue/test-utils": "^2.4.6",
+        "autoprefixer": "^10.4.12",
+        "axios": "^1.6.4",
+        "happy-dom": "^14.11.0",
+        "jsdom": "^24.0.0",
+        "laravel-vite-plugin": "^1.0",
+        "postcss": "^8.4.31",
+        "tailwindcss": "^3.2.1",
+        "typescript": "^5.0.2",
+        "vite": "^5.0",
+        "vite-svg-loader": "^5.1.0",
+        "vitest": "^1.6.0",
+        "vue": "^3.4.0",
+        "vue-tsc": "^1.8.27"
+    },
+    "dependencies": {
+        "@types/uuid": "^9.0.8",
+        "uuid": "^9.0.1"
+    }
+}

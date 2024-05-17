@@ -1,0 +1,88 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for crm-administrator/public/build/assets/Login-XROyM0cF.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">crm-administrator/public/build/assets</a> Login-XROyM0cF.js</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import{d as w,i as v,j as y,v as x,o as n,g as b,T as V,c,w as i,a,u as s,Z as B,t as C,h as p,b as r,k as $,e as f,n as P,f as N}from"./app-f3-vUXzC.js";import{_ as U}from"./GuestLayout.vue_vue_type_script_setup_true_lang-CzNavjmr.js";import{_,a as g,b as h}from"./TextInput.vue_vue_type_script_setup_true_lang--0s84DAo.js";import{P as q}from"./PrimaryButton-CIl4h4HP.js";import"./ApplicationLogo-Cj23hSQ5.js";import"./_plugin-vue_export-helper-DlAUqK2U.js";const L=["value"],R=w({__name:"Checkbox",props:{checked:{type:Boolean},value:{}},emits:["update:checked"],setup(d,{emit:e}){const m=e,l=d,o=v({get(){return l.checked},set(t){m("update:checked",t)}});return(t,u)=&gt;y((n(),b("input",{type:"checkbox",value:t.value,"onUpdate:modelValue":u[0]||(u[0]=k=&gt;o.value=k),class:"rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500"},null,8,L)),[[x,o.value]])}}),j={key:0,class:"mb-4 font-medium text-sm text-green-600"},D={class:"mt-4"},E={class:"block mt-4"},F={class:"flex items-center"},M=r("span",{class:"ms-2 text-sm text-gray-600"},"Remember me",-1),S={class:"flex items-center justify-end mt-4"},I=w({__name:"Login",props:{canResetPassword:{type:Boolean},status:{}},setup(d){const e=V({email:"",password:"",remember:!1}),m=()=&gt;{e.post(route("login"),{onFinish:()=&gt;{e.reset("password")}})};return(l,o)=&gt;(n(),c(U,null,{default:i(()=&gt;[a(s(B),{title:"Log in"}),l.status?(n(),b("div",j,C(l.status),1)):p("",!0),r("form",{onSubmit:N(m,["prevent"])},[r("div",null,[a(_,{for:"email",value:"Email"}),a(g,{id:"email",type:"email",class:"mt-1 block w-full",modelValue:s(e).email,"onUpdate:modelValue":o[0]||(o[0]=t=&gt;s(e).email=t),required:"",autofocus:"",autocomplete:"username"},null,8,["modelValue"]),a(h,{class:"mt-2",message:s(e).errors.email},null,8,["message"])]),r("div",D,[a</span></span>(_,{for:"password",value:"Password"}),a(g,{id:"password",type:"password",class:"mt-1 block w-full",modelValue:s(e).password,"onUpdate:modelValue":o[1]||(o[1]=t=&gt;s(e).password=t),required:"",autocomplete:"current-password"},null,8,["modelValue"]),a(h,{class:"mt-2",message:s(e).errors.password},null,8,["message"])]),r("div",E,[r("label",F,[a(R,{name:"remember",checked:s(e).remember,"onUpdate:checked":o[2]||(o[2]=t=&gt;s(e).remember=t)},null,8,["checked"]),M])]),r("div",S,[l.canResetPassword?(n(),c(s($),{key:0,href:l.route("password.request"),class:"underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"},{default:i(()=&gt;[f(" Forgot your password? ")]),_:1},8,["href"])):p("",!0),a(q,{class:P(["ms-4",{"opacity-25":s(e).processing}]),disabled:s(e).processing},{default:i(()=&gt;[f(" Log in ")]),_:1},8,["class","disabled"])])],32)]),_:1}))}});export{I as default};</span>
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2024-05-16T14:13:17.337Z
+            </div>
+        <script src="../../../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../../../sorter.js"></script>
+        <script src="../../../../block-navigation.js"></script>
+    </body>
+</html>
+    
