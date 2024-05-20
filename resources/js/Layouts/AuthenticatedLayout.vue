@@ -250,7 +250,7 @@ const showingNavigationDropdown = ref(false);
           <SideBarVue :menuItems="menuItems" />
         </div>
 
-        <div class="lg:w-10/12 md:w-9/12 h-full">
+        <div class="lg:w-10/12 md:w-9/12 h-full w-screen">
           <!-- Page Content -->
           <main>
             <slot />

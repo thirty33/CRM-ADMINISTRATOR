@@ -17,6 +17,9 @@ export default {
             },
             transitionProperty: {
                 'height': 'height',
+            },
+            spacing: {
+              '94': '23rem',
             }
         },
     },
