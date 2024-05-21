@@ -48,7 +48,8 @@ class HandleInertiaRequests extends Middleware
                     ),
                     true
                 );
-            }
+            },
+            'number_page_pagination' => intval(config('app.DEFAULT_SHOW_NUMBER_PAGE_PAGINATION'))
         ];
     }
 }

@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { TableInterfaceDataListDto } from '@/Interfaces/tables';
+import { TableInterfaceDataListDto } from "@/Interfaces/tables";
+import { Link } from "@inertiajs/vue3";
+
 const props = defineProps<TableInterfaceDataListDto>();
 </script>
 
@@ -23,12 +25,16 @@ const props = defineProps<TableInterfaceDataListDto>();
       >
         {{ item[header.columnProp] }}
       </td>
-      <td class="px-6 py-4 text-right">
-        <a
+      <td class="px-6 py-4 lg:text-right flex flex-col text-left lg:items-center lg:flex-row justify-between">
+        <Link
           href="#"
           class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-          >Edit</a
-        >
+          >Edit
+        </Link>
+        <div
+          class="cursor-pointer font-medium text-blue-600 dark:text-blue-500 hover:underline"
+          >Delete
+        </div>
       </td>
     </tr>
   </tbody>

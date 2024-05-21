@@ -36,7 +36,7 @@ onMounted(() => {
     >
       <Link
         class="flex items-center p-2"
-        :href="route(`${props.path}`)"
+        :href="route(`${props.path}`, { page: 1})"
         :method="props.httpMethod"
         :as="props.httpMethod == 'post' ? 'button' : undefined"
       >

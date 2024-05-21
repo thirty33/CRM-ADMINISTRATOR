@@ -9,4 +9,5 @@ export type PageProps<T extends Record<string, unknown> = Record<string, unknown
     auth: {
         user: User;
     };
+    number_page_pagination?: number;
 };

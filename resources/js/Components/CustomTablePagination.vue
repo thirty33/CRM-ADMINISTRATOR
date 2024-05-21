@@ -1,36 +1,27 @@
 <script setup lang="ts">
 import { TablePaginationListDto } from "@/Interfaces/tables";
 import { Link } from "@inertiajs/vue3";
+import { ref } from "vue";
+import { usePagination } from '@/Hooks/usePagination';
+import { usePage } from '@inertiajs/vue3';
 
 const props = defineProps<TablePaginationListDto>();
 
-// console.log("props", props.dataItems.links);
-console.log("props meta", props.dataItems.meta);
+const page = usePage();
 
-const pages2 = [
-  { number: "1", active: false },
-  { number: "2", active: false },
-  { number: "3", active: true },
-  { number: "4", active: false },
-  { number: "5", active: false },
-];
+const { last_page, current_page} = props.dataItems.meta;
+const {
+  currentPage,
+  pages,
+  totalPages,
+  initPageToShow,
+  totalPagesToShow
+} = usePagination({
+  last_page: last_page,
+  current_page: current_page,
+  default_page_to_show: page?.props?.number_page_pagination ?? 5
+});
 
-const totalPages = props.dataItems.meta.last_page;
-const currentPage = props.dataItems.meta.current_page;
-const defaultPagestoShow = 5;
-
-const totalPagesToShow =
-  totalPages <= defaultPagestoShow ? totalPages : defaultPagestoShow;
-
-console.log("totalPagesToShow", totalPagesToShow);
-
-const pages = (numberPages: number) => {
-  let pagesToReturn = [];
-  for (let index = 1; index <= numberPages; index++) {
-    pagesToReturn.push({ number: `${index}`, active: index === currentPage });
-  }
-  return pagesToReturn;
-};
 </script>
 
 <template>
@@ -44,6 +35,8 @@ const pages = (numberPages: number) => {
               page: currentPage - 1,
             })
           "
+          :only="['dataItems']"
+          preserve-scroll
           class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
           :class="{ 'opacity-75': currentPage === 1 }"
         >
@@ -66,27 +59,37 @@ const pages = (numberPages: number) => {
         </Link>
       </li>
 
-      <li v-for="page in pages(totalPagesToShow)" :key="page.number">
+      <li
+        v-for="page in pages(totalPages).slice(
+          initPageToShow,
+          totalPagesToShow
+        )"
+        :key="page.number"
+      >
         <Link
           :href="route('module-list', { page: page.number })"
+          preserve-scroll
           :class="{
             'z-10 flex items-center justify-center px-4 h-10 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white':
               page.active,
             'flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white':
               !page.active,
           }"
+          :only="['dataItems']"
           >{{ page.number }}
         </Link>
       </li>
 
       <li>
-        <a
+        <Link
           v-if="!(currentPage === totalPages)"
           :href="
             route('module-list', {
               page: currentPage + 1,
             })
           "
+          preserve-scroll
+          :only="['dataItems']"
           class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
         >
           <span class="sr-only">Next</span>
@@ -105,7 +108,7 @@ const pages = (numberPages: number) => {
               d="m1 9 4-4-4-4"
             />
           </svg>
-        </a>
+        </Link>
       </li>
     </ul>
   </nav>

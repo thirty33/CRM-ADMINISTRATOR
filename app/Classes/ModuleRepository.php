@@ -8,18 +8,18 @@ use App\Models\Module;
 
 class ModuleRepository implements ListRepositoryInterface
 {
+    private $items_per_page = 10;
     /**
      * Create a new class instance.
      */
     public function __construct()
     {
-        //
+      $this->items_per_page = config('app.DEFAULT_NUMBER_PER_PAGE_PAGINATION');
     }
 
     public function getList()
     {
-      // $query = Module::paginate(10);
-      $query = Module::paginate(2);
+      $query = Module::paginate($this->items_per_page);
       $modules = new ModuleCollection($query);
       return $modules;
     }

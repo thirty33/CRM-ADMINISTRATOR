@@ -122,5 +122,6 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
-
+    'DEFAULT_NUMBER_PER_PAGE_PAGINATION' => env('DEFAULT_NUMBER_PER_PAGE_PAGINATION'),
+    'DEFAULT_SHOW_NUMBER_PAGE_PAGINATION' => env('DEFAULT_SHOW_NUMBER_PAGE_PAGINATION')
 ];

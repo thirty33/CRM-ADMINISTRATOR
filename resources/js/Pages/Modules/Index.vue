@@ -3,6 +3,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import CustomTableComponent from "@/Components/CustomTableComponent.vue";
 import CustomTablePagination from "@/Components/CustomTablePagination.vue";
 import { Head } from "@inertiajs/vue3";
+import { Link } from "@inertiajs/vue3";
 import { TableInterface } from "@/Interfaces/tables";
 import { useTranslation } from "@/Hooks/useTranslations";
 
