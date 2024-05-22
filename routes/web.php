@@ -29,7 +29,9 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/module-list', [\App\Http\Controllers\ModulesController::class, 'index'])
-        ->name('module-list');
+        ->name('module.index');
+    Route::delete('/module-delete/{item}', [\App\Http\Controllers\ModulesController::class, 'destroy'])
+        ->name('module.delete');
 });
 
 Route::get('/404', function () {

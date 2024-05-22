@@ -17,6 +17,7 @@ class ModuleCollection extends ResourceCollection
   {
     $data = $this->collection->map(function ($item) {
       return [
+        'id' => $item->id,
         'route' => $item->route,
         'description' => $item->description,
         'title' => $item->title,

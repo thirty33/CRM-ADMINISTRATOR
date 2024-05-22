@@ -10,4 +10,7 @@ export type PageProps<T extends Record<string, unknown> = Record<string, unknown
         user: User;
     };
     number_page_pagination?: number;
+    path_module: string,
+    delete_action: string,
+    udpate_action: string
 };

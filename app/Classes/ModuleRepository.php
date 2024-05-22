@@ -5,6 +5,7 @@ namespace App\Classes;
 use App\Contracts\ListRepositoryInterface;
 use App\Http\Resources\ModuleCollection;
 use App\Models\Module;
+use Illuminate\Database\Eloquent\Model;
 
 class ModuleRepository implements ListRepositoryInterface
 {
@@ -32,5 +33,9 @@ class ModuleRepository implements ListRepositoryInterface
         ['title' => 'Title', 'columnProp' => 'title'],
         ['title' => 'Label', 'columnProp' => 'label'],
       ];
+    }
+
+    public function deleteItem(Model $item) {
+      $item->delete();
     }
 }

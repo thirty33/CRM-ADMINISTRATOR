@@ -2,26 +2,31 @@
 import { TablePaginationListDto } from "@/Interfaces/tables";
 import { Link } from "@inertiajs/vue3";
 import { ref } from "vue";
-import { usePagination } from '@/Hooks/usePagination';
-import { usePage } from '@inertiajs/vue3';
+import { usePagination } from "@/Hooks/usePagination";
+import { usePage } from "@inertiajs/vue3";
+import { useHttp } from "@/Hooks/useHttp";
 
 const props = defineProps<TablePaginationListDto>();
 
 const page = usePage();
 
-const { last_page, current_page} = props.dataItems.meta;
-const {
-  currentPage,
-  pages,
-  totalPages,
-  initPageToShow,
-  totalPagesToShow
-} = usePagination({
-  last_page: last_page,
-  current_page: current_page,
-  default_page_to_show: page?.props?.number_page_pagination ?? 5
-});
+const { last_page, current_page } = props.dataItems.meta;
 
+const { currentPage, pages, totalPages, initPageToShow, totalPagesToShow } =
+  usePagination({
+    last_page: last_page,
+    current_page: current_page,
+    default_page_to_show: page?.props?.number_page_pagination ?? 5,
+  });
+
+const { path_module, delete_action, udpate_action, index_action } = props;
+
+const { getPage } = useHttp({
+  path_module: path_module,
+  delete_action: delete_action,
+  udpate_action: udpate_action,
+  index_action: index_action,
+});
 </script>
 
 <template>
@@ -31,7 +36,7 @@ const {
         <Link
           v-if="!(currentPage === 1)"
           :href="
-            route('module-list', {
+            getPage({
               page: currentPage - 1,
             })
           "
@@ -67,7 +72,11 @@ const {
         :key="page.number"
       >
         <Link
-          :href="route('module-list', { page: page.number })"
+          :href="
+            getPage({
+              page: page.number,
+            })
+          "
           preserve-scroll
           :class="{
             'z-10 flex items-center justify-center px-4 h-10 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white':
@@ -84,7 +93,7 @@ const {
         <Link
           v-if="!(currentPage === totalPages)"
           :href="
-            route('module-list', {
+            getPage({
               page: currentPage + 1,
             })
           "

@@ -3,20 +3,21 @@ import { TableInterfaceDataListDto } from "@/Interfaces/tables";
 import { Link } from "@inertiajs/vue3";
 
 const props = defineProps<TableInterfaceDataListDto>();
+
 </script>
 
 <template>
   <tbody>
     <tr
       class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-      v-for="(item, index) in dataItems.data"
+      v-for="(item, index) in props.dataItems.data"
       :key="index"
     >
       <th
         scope="row"
         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
       >
-        {{ item[headers[0].columnProp] }}
+        {{ item[props.headers[0].columnProp] }}
       </th>
       <td
         class="px-6 py-4"
@@ -32,6 +33,7 @@ const props = defineProps<TableInterfaceDataListDto>();
           >Edit
         </Link>
         <div
+          @click="$emit('deleteItem', item.id)"
           class="cursor-pointer font-medium text-blue-600 dark:text-blue-500 hover:underline"
           >Delete
         </div>

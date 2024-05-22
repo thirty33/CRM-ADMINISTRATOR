@@ -31,11 +31,6 @@ interface Links {
   next: string | null;
 }
 
-// interface ModuleListResponse {
-//   links: Links;
-//   meta: Meta;
-// }
-
 export interface TableInterface {
   headers: TableHeaderItem[];
   dataItems: {
@@ -43,6 +38,10 @@ export interface TableInterface {
     links: Links;
     meta: Meta;
   };
+  path_module: string;
+  delete_action: string;
+  udpate_action: string;
+  index_action: string;
 }
 
 export interface TableInterfaceHeaderDto extends Pick<TableInterface,
@@ -54,6 +53,6 @@ export interface TableInterfaceDataListDto extends Pick<TableInterface,
 >{};
 
 export interface TablePaginationListDto extends Pick<TableInterface,
-  'dataItems'
+  'dataItems' | 'delete_action' | 'path_module' | 'udpate_action' | 'index_action'
 >{};
 

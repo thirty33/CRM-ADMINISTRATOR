@@ -26,4 +26,9 @@ abstract class ListDataRepositoryCreator
       $result = $repository->getTableHeaders();
       return $result;
     }
+
+    public function deleteItem($item) {
+      $repository = $this->factoryMethod();
+      $repository->deleteItem($item);
+    }
 }

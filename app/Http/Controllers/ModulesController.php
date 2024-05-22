@@ -18,7 +18,20 @@ class ModulesController extends Controller
   {
     return Inertia::render('Modules/Index', [
       'dataItems' => $this->repository->listData(),
-      'headers' => $this->repository->getTableHeaders()
+      'headers' => $this->repository->getTableHeaders(),
+      'path_module' => 'module',
+      'delete_action' => 'delete',
+      'udpate_action' => 'update',
+      'index_action' => 'index'
     ]);
+  }
+
+  /**
+   * Remove the specified resource from storage.
+   */
+  public function destroy(Request $request, Module $item)
+  {
+    $this->repository->deleteItem($item);
+    return to_route('module.index', $request->all());
   }
 }
