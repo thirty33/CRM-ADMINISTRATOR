@@ -65,6 +65,8 @@ const deleteItem = () => {
           :headers="props.headers"
           :data-items="props.dataItems"
           @delete-item="openModal"
+          :path_module="path_module"
+          :index_action="index_action"
         >
         </CustomTableComponent>
       </div>

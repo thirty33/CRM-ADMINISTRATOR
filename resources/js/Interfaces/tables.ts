@@ -45,11 +45,11 @@ export interface TableInterface {
 }
 
 export interface TableInterfaceHeaderDto extends Pick<TableInterface,
-  'headers'
+  'headers' | 'path_module' | 'index_action'
 >{};
 
 export interface TableInterfaceDataListDto extends Pick<TableInterface,
-  'headers' | 'dataItems'
+  'headers' | 'dataItems' | 'path_module' | 'index_action'
 >{};
 
 export interface TablePaginationListDto extends Pick<TableInterface,

@@ -14,11 +14,17 @@ const props = defineProps<TableInterfaceDataListDto>();
     <table
       class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 rounded-lg"
     >
-      <HeadersTable :headers="props.headers"></HeadersTable>
+      <HeadersTable
+        :headers="props.headers"
+        :path_module="props.path_module"
+        :index_action="props.index_action"
+      ></HeadersTable>
       <BodyTable
         :headers="props.headers"
         :data-items="props.dataItems"
-        @delete-item="(id) => $emit('deleteItem', id)">
+        @delete-item="(id) => $emit('deleteItem', id)"
+        :path_module="props.path_module"
+        :index_action="props.index_action">
       </BodyTable>
     </table>
     <div
