@@ -1,10 +1,10 @@
 ## CRM ADMINISTRATOR
 
-The following project is built with: Php, javascript and typescript.
+- The following project is built with: Php, javascript and typescript.
 
-The frameworks used are: Laravel, inertia.js and vue.js.
+- The frameworks used are: Laravel, inertia.js and vue.js.
 
-The purpose of this project is to build a multi-purpose crm with reusable components such as:
+- The purpose of this project is to build a multi-purpose crm with reusable components such as:
 
 - Navigation
 - Tables
@@ -27,14 +27,18 @@ The purpose of this project is to build a multi-purpose crm with reusable compon
 
 - Inside resources\js\Pages\Modules\Index.vue exists an example of how to use CustomTablePagination.
 
+- You can configure pagination by adding this variables inside .env:
+
+- DEFAULT_NUMBER_PER_PAGE_PAGINATION=5. (how many items are showed by page)
+- DEFAULT_SHOW_NUMBER_PAGE_PAGINATION=10. (number of pages showed in pagination)
 
 ## For testing:
 
-unit/integration tests: phpUnit, vitest.
-e2e testing: laravel dusk
+- unit/integration tests: phpUnit, vitest.
+- e2e testing: laravel dusk
 
 ## command to run tests:
 
-phpUnit (unit/feature): php artisan test.
-vitest (unit/feature): npm run test.
-laravel dusk (e2e): php artisan dusk.
+- phpUnit (unit/feature): php artisan test.
+- vitest (unit/feature): npm run test.
+- laravel dusk (e2e): php artisan dusk.
