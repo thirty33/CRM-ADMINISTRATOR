@@ -33,13 +33,6 @@ class DashBoardTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_auth_user_can_see_their_modules(): void
-    {
-        $user = User::factory()->create();
-
-        $response = $this->actingAs($user)->get('/dashboard');
-    }
-
     public function test_can_view_sidebar_options(): void {
 
         $user = User::factory()->create();
