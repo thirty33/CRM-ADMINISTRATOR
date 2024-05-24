@@ -1,23 +1,46 @@
-import { ref, Ref, computed } from "vue";
+import { ref, Ref, computed, onMounted } from "vue";
 import { useHttp } from "@/Hooks/useHttp";
+import { TableHeaderItem, HeaderActionItem, HeaderAction } from "@/Interfaces/tables";
 
-interface HeaderActionItem {
-  up_arrow: string;
-  down_arrow: string;
-  order_activated: boolean;
-  query_name: string;
-  query_params: {
-    up_arrow: string;
-    down_arrow: string;
-    deactivate: string;
-  };
+const currentColors: {
+  [key: string]: string;
+} = {
+  activate: "#b91c1c",
+  deactivate: "currentColor",
+};
+
+const transformQueryParamsFromRoute = (): { [key: string]: string } => {
+  let currentParams = {}
+  Object.keys(route().params).map(key => {
+    currentParams = {
+      ...currentParams,
+      ...{ [`${key.toUpperCase()}`]: route().params[key] }
+    }
+  });
+  return currentParams;
 }
 
-interface HeaderAction {
-  [key: string]: HeaderActionItem;
+const headerArrowIsActivated = (key: string, typeOrder: string = 'ASC'): boolean => {
+  const currentParams = transformQueryParamsFromRoute();
+  return currentParams.hasOwnProperty(key) && currentParams[key] === typeOrder;
 }
 
-export function useTableActions(props: { path_module: string, index_action: string }) {
+const assignCorrectColorToArrow = (key: string, typeOrder: string = 'ASC'): string => {
+  return headerArrowIsActivated(key, typeOrder)
+    ? currentColors["activate"]
+    : currentColors["deactivate"]
+}
+
+const getRealHeader = (str: string) => str.toUpperCase();
+
+
+export function useTableActions(
+  props: {
+    path_module: string,
+    index_action: string,
+    headers: TableHeaderItem[]
+  }
+) {
 
   const { getPageProgramatically } = useHttp({
     path_module: props.path_module,
@@ -26,12 +49,7 @@ export function useTableActions(props: { path_module: string, index_action: stri
     delete_action: ''
   });
 
-  const currentColors: {
-    [key: string]: string;
-  } = {
-    activate: "#b91c1c",
-    deactivate: "currentColor",
-  };
+
 
   const currentQueryParams: Ref<{ [key: string]: string }> = ref({});
 
@@ -67,35 +85,30 @@ export function useTableActions(props: { path_module: string, index_action: stri
     getPageProgramatically(currentQueryParams.value);
   }
 
-  const headerActions: Ref<HeaderAction> = ref({
-    ROUTE: {
-      up_arrow: currentColors["deactivate"],
-      down_arrow: currentColors["deactivate"],
-      order_activated: true,
-      query_name: 'route',
-      query_params: {
-        up_arrow: 'ASC',
-        down_arrow: 'DESC',
-        deactivate: 'false'
+  const headerActions: Ref<HeaderAction> = ref({});
+
+
+  onMounted(() => {
+
+    let transform: HeaderAction = {};
+
+    props.headers.map((header: TableHeaderItem) => {
+
+      const {title, ...bodyHeader} = header;
+
+      transform = {
+        ...transform,
+        [`${getRealHeader(header.title)}`]: {
+          up_arrow: assignCorrectColorToArrow(getRealHeader(header.title), 'ASC'),
+          down_arrow: assignCorrectColorToArrow(getRealHeader(header.title), 'DESC'),
+          ...bodyHeader
+        }
       }
-    },
-    DESCRIPTION: {
-      up_arrow: currentColors["deactivate"],
-      down_arrow: currentColors["deactivate"],
-      order_activated: true,
-      query_name: 'description',
-      query_params: {
-        up_arrow: 'ASC',
-        down_arrow: 'DESC',
-        deactivate: 'false'
-      }
-    },
-    // DESCRIPTION: {
-    //   up_arrow: currentColors["deactivate"],
-    //   down_arrow: currentColors["deactivate"],
-    //   order_activated: true,
-    // },
-  });
+    });
+
+    headerActions.value = transform;
+
+  })
 
   const orderByColumn = (
     index: string,
@@ -120,15 +133,9 @@ export function useTableActions(props: { path_module: string, index_action: stri
       headerActions.value[index][anotherArrow] = currentColors["deactivate"];
     }
 
-    console.log('up state', arrowIsActive(headerActions.value[index].up_arrow))
-    console.log('down state', arrowIsActive(headerActions.value[index].down_arrow))
-
     configureQueryParam(headerActions.value[index]);
 
-    console.log('current query params', currentQueryParams.value)
   }
-
-  const getRealHeader = (str: string) => str.toUpperCase();
 
   return {
     headerActions,

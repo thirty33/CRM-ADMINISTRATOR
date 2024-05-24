@@ -24,13 +24,10 @@ export function useHttp(
   }
 
   const getPageProgramatically = (params: { [key: string]: string | number }): void => {
-    router.visit('/module-list',{
-      data: {
-        ...route().params,
-        ...params,
-      },
-      preserveState: true
-    })
+    router.visit(route(`${props.path_module}.${props.index_action}`, {
+      ...route().params,
+      ...params,
+    }))
   }
 
   return {

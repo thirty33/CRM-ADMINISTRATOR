@@ -17,7 +17,7 @@ class ModulesController extends Controller
   public function index(Request $request)
   {
     return Inertia::render('Modules/Index', [
-      'dataItems' => $this->repository->listData(),
+      'dataItems' => $this->repository->listData($request->all()),
       'headers' => $this->repository->getTableHeaders(),
       'path_module' => 'module',
       'delete_action' => 'delete',

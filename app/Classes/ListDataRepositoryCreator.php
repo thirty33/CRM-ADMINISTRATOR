@@ -15,9 +15,9 @@ abstract class ListDataRepositoryCreator
 
     }
 
-    public function listData() {
+    public function listData(Array $requestArray = []) {
       $repository = $this->factoryMethod();
-      $result = $repository->getList();
+      $result = $repository->getList($requestArray);
       return $result;
     }
 

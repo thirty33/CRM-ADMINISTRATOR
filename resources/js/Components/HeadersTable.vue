@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { TableInterfaceHeaderDto } from "@/Interfaces/tables";
 import { ref, Ref, computed } from "vue";
-const props = defineProps<TableInterfaceHeaderDto>();
 import OrderArrowDownSvg from "@svg/arrow-table-down.vue";
 import OrderArrowUpSvg from "@svg/arrow-table-up.vue";
 import { useTableActions } from "@/Hooks/useTableActions";
 
+const props = defineProps<TableInterfaceHeaderDto>();
+
 const { headerActions, getRealHeader, orderByColumn } = useTableActions({
   path_module: props.path_module,
   index_action: props.index_action,
+  headers: props.headers
 });
 
 </script>
@@ -33,7 +35,7 @@ const { headerActions, getRealHeader, orderByColumn } = useTableActions({
               headerActions[getRealHeader(header.title)].order_activated
             "
           >
-            <a href="#">
+            <div>
               <OrderArrowUpSvg
                 class="w-2 h-2"
                 :current_color="
@@ -44,8 +46,8 @@ const { headerActions, getRealHeader, orderByColumn } = useTableActions({
                     orderByColumn(getRealHeader(header.title), 'up_arrow')
                 "
               />
-            </a>
-            <a href="#">
+            </div>
+            <div>
               <OrderArrowDownSvg
                 class="w-2 h-2"
                 :current_color="
@@ -56,7 +58,7 @@ const { headerActions, getRealHeader, orderByColumn } = useTableActions({
                     orderByColumn(getRealHeader(header.title), 'down_arrow')
                 "
               />
-            </a>
+            </div>
           </div>
         </div>
       </th>

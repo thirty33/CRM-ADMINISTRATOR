@@ -1,6 +1,13 @@
 export interface TableHeaderItem {
   title: string;
   columnProp: string;
+  order_activated: boolean;
+  query_name: string;
+  query_params: {
+    up_arrow: string;
+    down_arrow: string;
+    deactivate: string;
+  };
 }
 
 export interface TableDataItem {
@@ -55,4 +62,20 @@ export interface TableInterfaceDataListDto extends Pick<TableInterface,
 export interface TablePaginationListDto extends Pick<TableInterface,
   'dataItems' | 'delete_action' | 'path_module' | 'udpate_action' | 'index_action'
 >{};
+
+export interface HeaderActionItem {
+  up_arrow: string;
+  down_arrow: string;
+  order_activated: boolean;
+  query_name: string;
+  query_params: {
+    up_arrow: string;
+    down_arrow: string;
+    deactivate: string;
+  };
+}
+
+export interface HeaderAction {
+  [key: string]: HeaderActionItem;
+}
 
