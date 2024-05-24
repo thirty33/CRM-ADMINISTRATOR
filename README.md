@@ -34,23 +34,23 @@
 
  ![alt text](image-5.png)
 
- - configure an implementation of - ListRepositoryInterface for example - App\Classes\ModuleRepository, just there you - can configure tableHeaders inside - setTableHeaders()
+ - configure an implementation of ListRepositoryInterface for example App\Classes\ModuleRepository, just there you can configure tableHeaders inside setTableHeaders()
 
   ![alt text](image-3.png)
 
  - params:
-    -'title' => 'Route', // name of column on table
-    -'columnProp' => 'route', // property mapped in collection
-    -'order_activated' => true, // active order 
-    -'query_name' => 'route', // query_param used to order
-    -'query_params'
-      -'up_arrow' => 'ASC', //up_arrow is selected
-      -'down_arrow' => 'DESC', //down_arrow is selected
-      -'deactivate' => 'false' // deactivate order
-  
-  - inside getList() method you can configure the - paginated query
 
-  - finally you can configure which RepositoryCreator class is to be injected into your controller
+  -'title': name of column on table.
+  -'columnProp': property mapped in collection.
+  -'order_activated': active order arrow.
+  -'query_name': query_param used to order.
+  -'up_arrow': up_arrow is selected.
+  -'down_arrow': down_arrow is selected.
+  -'deactivate': deactivate order.
+
+  - inside getList() method you can configure the paginated query
+
+  - inside RepositoryServiceProvider you can configure which RepositoryCreator class is to be injected into your controller
 
   ![alt text](image-4.png)
 
