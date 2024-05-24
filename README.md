@@ -39,7 +39,7 @@
   ![alt text](image-3.png)
 
  - params:
- 
+
   - title: name of column on table.
   - columnProp: property mapped in collection.
   - order_activated: active order arrow.
@@ -102,5 +102,7 @@
 - configure database in .env file (configure pagination variables as well).
 - run: php artisan migrate
 - run: php artisan db:seed
-
+- run: php artisan ziggy:generate
+- run: php artisan ziggy:generate --types
+- go to /login path and enter with test@example.com, password: password.
 
