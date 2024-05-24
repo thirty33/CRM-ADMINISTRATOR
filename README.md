@@ -39,14 +39,14 @@
   ![alt text](image-3.png)
 
  - params:
-
-  -'title': name of column on table.
-  -'columnProp': property mapped in collection.
-  -'order_activated': active order arrow.
-  -'query_name': query_param used to order.
-  -'up_arrow': up_arrow is selected.
-  -'down_arrow': down_arrow is selected.
-  -'deactivate': deactivate order.
+ 
+  - title: name of column on table.
+  - columnProp: property mapped in collection.
+  - order_activated: active order arrow.
+  - query_name: query_param used to order.
+  - up_arrow: up_arrow is selected.
+  - down_arrow: down_arrow is selected.
+  - deactivate: deactivate order.
 
   - inside getList() method you can configure the paginated query
 
