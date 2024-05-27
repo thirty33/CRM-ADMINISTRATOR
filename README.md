@@ -87,6 +87,7 @@
 - phpUnit (unit/feature): php artisan test.
 - vitest (unit/feature): npm run test.
 - laravel dusk (e2e): php artisan dusk.
+- note: to run e2e testing you must run the project first, so follow instructions on section "Configure project in local environment" and after run the project (npm run dev & php artisan serve) and only when the project is running you can run: laravel dusk (this command going to reset migrations, so when tests have finished, rerun seeders: php artisan migrate:refresh --seed)
 
 ## Requirements:
 
@@ -97,12 +98,16 @@
 ## Configure project in local environment:
 
 - Clone this repo.
-- run: npm install
-- run: composer install
+- run: npm install.
+- run: composer install.
+- change .env.copy file to .env.
 - configure database in .env file (configure pagination variables as well).
-- run: php artisan migrate
-- run: php artisan db:seed
-- run: php artisan ziggy:generate
-- run: php artisan ziggy:generate --types
+- run: php artisan migrate.
+- run: php artisan db:seed.
+- run: php artisan ziggy:generate.
+- run: php artisan ziggy:generate --types.
+- to run test, first run: npm run build, then run: php artisan test, npm run test.
+- run project: npm run dev & php artisan serve.
 - go to /login path and enter with test@example.com, password: password.
+
 
