@@ -2,29 +2,31 @@
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
+import { InputForm } from "@/Classes/Forms";
 
 const props = defineProps<{
-  // v_model_ref: string;
-  errors: Object;
+  input: InputForm,
+  prop: string
 }>();
 
-const model = defineModel({ default: "" })
+const model = defineModel<{[key: string]: string}>({ required: true });
+
 </script>
 
 <template>
-  <div class="bg-blue-500">
-    <InputLabel for="name" value="Name" />
+  <div class="">
+    <InputLabel :for="input.inputName" :value="input.labelName" />
 
     <TextInput
-      id="name"
-      type="text"
+      :id="input.inputName"
+      :type="input.inputType"
       class="mt-1 block w-full"
-      v-model="model"
-      required
-      autofocus
-      autocomplete="name"
+      v-model="model[prop]"
+      :required="input.required"
+      :autofocus="input.autofocus"
+      :autocomplete="input.autocomplete"
     />
 
-    <InputError class="mt-2" :message="errors?.name" />
+    <InputError class="mt-2" :message="input.error" />
   </div>
 </template>

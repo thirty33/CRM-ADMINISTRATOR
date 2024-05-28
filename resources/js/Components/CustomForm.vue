@@ -5,13 +5,14 @@ import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
 import CustomTextInputForm from "@/Components/CustomFormInputs/CustomTextInputForm.vue";
+import { InputForm } from "@/Classes/Forms";
 
-import { reactive, watch, inject } from "vue";
+import { reactive, watch, inject, computed, ref } from "vue";
 import { useForm, router, usePage } from "@inertiajs/vue3";
 import { useTranslation } from "@/Hooks/useTranslations";
 
-
-defineProps({ errors: Object });
+const page = usePage();
+const errors = computed(() => page.props.errors)
 
 const getPage = inject("getPageProgramatically") as ({}) => void;
 const getQueryParams = inject("transformQueryParamsFromRoute") as () => {
@@ -39,31 +40,37 @@ watch(
     debounceSearch();
   }
 );
+
+const input: InputForm = {
+  labelName: "Search",
+  inputName: "search",
+  inputType: "text",
+  required: false,
+  autofocus: true,
+  autocomplete: "search",
+  error: errors.value?.q ?? '',
+  formProp: 'q',
+  typeInput: CustomTextInputForm
+};
+
+const InputForms: InputForm[] = [
+  input
+];
+
 </script>
 
 <template>
   <form
     @submit.prevent="submit"
-    class="mt-6 space-y-6 bg-green-500 grid grid-cols-4 gap-0.5"
+    class="mt-6 space-y-6 grid grid-cols-4 gap-x-0.5"
   >
-    <CustomTextInputForm
-      v-model="form.q"
-      :errors="{}"
+    <component
+      v-for="input in InputForms"
+      :is="input.typeInput"
+      :key="input.inputName"
+      :input="input"
+      :prop="input.formProp"
+      v-model="form"
     />
-    <!-- <div class="bg-blue-500">
-      <InputLabel for="name" value="Name" />
-
-      <TextInput
-        id="name"
-        type="text"
-        class="mt-1 block w-full"
-        v-model="form.q"
-        required
-        autofocus
-        autocomplete="name"
-      />
-
-      <InputError class="mt-2" :message="errors?.name" />
-    </div> -->
   </form>
 </template>

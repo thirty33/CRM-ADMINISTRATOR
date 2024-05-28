@@ -65,7 +65,7 @@ provide('transformQueryParamsFromRoute', transformQueryParamsFromRoute);
       </h2>
     </template>
     <div class="shadow-md my-2 overflow-x-hidden">
-      <div class="bg-red-500 px-8 max-w-full w-screen md:max-w-full overflow-x-auto">
+      <div class="px-8 max-w-full w-screen md:max-w-full overflow-x-auto">
           <WrapperForm />
       </div>
       <div class="h-2/3">

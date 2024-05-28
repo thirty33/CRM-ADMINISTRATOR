@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Classes\ListDataRepositoryCreator;
 use Illuminate\Http\Request;
+use App\Http\Requests\GetModulesRequest;
 use Inertia\Inertia;
 use App\Models\Module;
 
@@ -14,7 +15,7 @@ class ModulesController extends Controller
   ) {
   }
 
-  public function index(Request $request)
+  public function index(GetModulesRequest $request)
   {
     return Inertia::render('Modules/Index', [
       'dataItems' => $this->repository->listData($request->all()),
