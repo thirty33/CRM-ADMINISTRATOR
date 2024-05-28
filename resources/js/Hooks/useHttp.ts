@@ -9,6 +9,17 @@ export function useHttp(
   }
 ) {
 
+  const transformQueryParamsFromRoute = (): { [key: string]: string } => {
+    let currentParams = {}
+    Object.keys(route().params).map(key => {
+      currentParams = {
+        ...currentParams,
+        ...{ [`${key.toUpperCase()}`]: route().params[key] }
+      }
+    });
+    return currentParams;
+  }
+
   const destroy = (params: { [key: string]: string | number }) => {
     router.delete(route(`${props.path_module}.${props.delete_action}`, {
       ...params,
@@ -27,12 +38,13 @@ export function useHttp(
     router.visit(route(`${props.path_module}.${props.index_action}`, {
       ...route().params,
       ...params,
-    }))
+    }), { preserveState: false } )
   }
 
   return {
     destroy,
     getPage,
-    getPageProgramatically
+    getPageProgramatically,
+    transformQueryParamsFromRoute
   }
 }

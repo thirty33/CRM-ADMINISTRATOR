@@ -9,30 +9,7 @@ const currentColors: {
   deactivate: "currentColor",
 };
 
-const transformQueryParamsFromRoute = (): { [key: string]: string } => {
-  let currentParams = {}
-  Object.keys(route().params).map(key => {
-    currentParams = {
-      ...currentParams,
-      ...{ [`${key.toUpperCase()}`]: route().params[key] }
-    }
-  });
-  return currentParams;
-}
-
-const headerArrowIsActivated = (key: string, typeOrder: string = 'ASC'): boolean => {
-  const currentParams = transformQueryParamsFromRoute();
-  return currentParams.hasOwnProperty(key) && currentParams[key] === typeOrder;
-}
-
-const assignCorrectColorToArrow = (key: string, typeOrder: string = 'ASC'): string => {
-  return headerArrowIsActivated(key, typeOrder)
-    ? currentColors["activate"]
-    : currentColors["deactivate"]
-}
-
 const getRealHeader = (str: string) => str.toUpperCase();
-
 
 export function useTableActions(
   props: {
@@ -42,14 +19,23 @@ export function useTableActions(
   }
 ) {
 
-  const { getPageProgramatically } = useHttp({
+  const { getPageProgramatically, transformQueryParamsFromRoute } = useHttp({
     path_module: props.path_module,
     index_action: props.index_action,
     udpate_action: '',
     delete_action: ''
   });
 
+  const headerArrowIsActivated = (key: string, typeOrder: string = 'ASC'): boolean => {
+    const currentParams = transformQueryParamsFromRoute();
+    return currentParams.hasOwnProperty(key) && currentParams[key] === typeOrder;
+  }
 
+  const assignCorrectColorToArrow = (key: string, typeOrder: string = 'ASC'): string => {
+    return headerArrowIsActivated(key, typeOrder)
+      ? currentColors["activate"]
+      : currentColors["deactivate"]
+  }
 
   const currentQueryParams: Ref<{ [key: string]: string }> = ref({});
 
@@ -94,7 +80,7 @@ export function useTableActions(
 
     props.headers.map((header: TableHeaderItem) => {
 
-      const {title, ...bodyHeader} = header;
+      const { title, ...bodyHeader } = header;
 
       transform = {
         ...transform,

@@ -5,8 +5,9 @@ import CustomTablePagination from "@/Components/CustomTablePagination.vue";
 import DangerButton from "@/Components/DangerButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import Modal from "@/Components/Modal.vue";
-import { Head, Link, router, usePage } from "@inertiajs/vue3";
-import { ref, Ref } from "vue";
+import WrapperForm from '@/Components/WrapperForm.vue';
+import { Head, usePage } from "@inertiajs/vue3";
+import { provide } from "vue";
 import { TableInterface } from "@/Interfaces/tables";
 import { useTranslation } from "@/Hooks/useTranslations";
 import { useTableModalActions } from "@/Hooks/useTableModalActions";
@@ -15,6 +16,7 @@ import { useHttp } from "@/Hooks/useHttp";
 const props = defineProps<TableInterface>();
 
 const { translate } = useTranslation();
+
 const page = usePage();
 
 const {
@@ -24,7 +26,7 @@ const {
   index_action
 } = props;
 
-const { destroy, getPage } = useHttp({
+const { destroy, getPage, getPageProgramatically, transformQueryParamsFromRoute } = useHttp({
   path_module: path_module,
   delete_action: delete_action,
   udpate_action: udpate_action,
@@ -36,7 +38,7 @@ const {
   RequestProcessing,
   closeModal,
   openModal,
-  currentItemId,
+  currentItemId
 } = useTableModalActions();
 
 const deleteItem = () => {
@@ -48,6 +50,9 @@ const deleteItem = () => {
     confirmItemDeletion.value = false;
   }
 };
+
+provide('getPageProgramatically', getPageProgramatically);
+provide('transformQueryParamsFromRoute', transformQueryParamsFromRoute);
 </script>
 
 <template>
@@ -60,6 +65,9 @@ const deleteItem = () => {
       </h2>
     </template>
     <div class="shadow-md my-2 overflow-x-hidden">
+      <div class="bg-red-500 px-8 max-w-full w-screen md:max-w-full overflow-x-auto">
+          <WrapperForm />
+      </div>
       <div class="h-2/3">
         <CustomTableComponent
           :headers="props.headers"
