@@ -35,4 +35,30 @@ class ModulesController extends Controller
     $this->repository->deleteItem($item);
     return to_route('module.index', $request->all());
   }
+
+  /**
+   * Display the specified resource.
+   */
+  public function show(Module $module)
+  {
+    return Inertia::render('Modules/Show', compact('module'));
+  }
+
+  /**
+   * Update the specified resource in storage.
+   */
+  public function update(Request $request, Module $module)
+  {
+
+    dd(['1' => $request->all()]);
+    // $request->validate([
+    //   'excerpt' => 'required',
+    //   'content' => 'required'
+    // ]);
+
+    $module->update($request->all());
+
+    return redirect()->route('notes.index');
+      // ->with('status', 'item updated');
+  }
 }

@@ -5,7 +5,7 @@ import CustomTablePagination from "@/Components/CustomTablePagination.vue";
 import DangerButton from "@/Components/DangerButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import Modal from "@/Components/Modal.vue";
-import WrapperForm from '@/Components/WrapperForm.vue';
+import WrapperModuleFiltersForm from '@/Components/CustomFormsWrappers/WrapperModuleFiltersForm.vue';
 import { Head, usePage } from "@inertiajs/vue3";
 import { provide } from "vue";
 import { TableInterface } from "@/Interfaces/tables";
@@ -66,7 +66,7 @@ provide('transformQueryParamsFromRoute', transformQueryParamsFromRoute);
     </template>
     <div class="shadow-md my-2 overflow-x-hidden">
       <div class="px-8 max-w-full w-screen md:max-w-full overflow-x-auto">
-          <WrapperForm />
+          <WrapperModuleFiltersForm />
       </div>
       <div class="h-2/3">
         <CustomTableComponent

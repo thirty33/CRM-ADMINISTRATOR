@@ -95,12 +95,17 @@ export class InputFormBuilder implements FormItemBuilder {
   }
 }
 
+type stateValue = number | string | boolean | Date;
+interface stateObject {
+  [key: string]: stateValue;
+}
+
 export class CustomisableForm {
 
   private _inputFormList: InputForm[] = [];
   private _formState = reactive({});
 
-  constructor(state: {[key: string]: number | string | boolean}) {
+  constructor(state: stateObject) {
     this.formState = state;
   }
 
@@ -112,11 +117,11 @@ export class CustomisableForm {
     return this._inputFormList;
   }
 
-  public set formState(state: {[key: string]: number | string | boolean}) {
+  public set formState(state: stateObject) {
     this._formState = reactive(state);
   }
 
-  public get formState(): {[key: string]: number | string | boolean} {
+  public get formState(): stateObject {
     return this._formState;
   }
 

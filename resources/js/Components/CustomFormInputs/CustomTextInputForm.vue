@@ -15,7 +15,7 @@ const model = defineModel<{[key: string]: string}>({ required: true });
 
 <template>
   <div class="">
-    
+
     <InputLabel :for="input.inputName" :value="input.labelName" />
 
     <TextInput

@@ -24,6 +24,12 @@ declare module 'ziggy-js' {
         }
     ],
     "sanctum.csrf-cookie": [],
+    "telescope": [
+        {
+            "name": "view",
+            "required": false
+        }
+    ],
     "ignition.healthCheck": [],
     "ignition.executeSolution": [],
     "ignition.updateConfig": [],
@@ -32,9 +38,23 @@ declare module 'ziggy-js' {
     "profile.update": [],
     "profile.destroy": [],
     "module.index": [],
+    "module.show": [
+        {
+            "name": "module",
+            "required": true,
+            "binding": "id"
+        }
+    ],
     "module.delete": [
         {
             "name": "item",
+            "required": true,
+            "binding": "id"
+        }
+    ],
+    "module.update": [
+        {
+            "name": "module",
             "required": true,
             "binding": "id"
         }

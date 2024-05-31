@@ -28,7 +28,7 @@ const props = defineProps<TableInterfaceDataListDto>();
       </td>
       <td class="px-6 py-4 lg:text-right flex flex-col text-left lg:items-center lg:flex-row justify-between">
         <Link
-          href="#"
+          :href="route('module.show', item.id)"
           class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
           >Edit
         </Link>
