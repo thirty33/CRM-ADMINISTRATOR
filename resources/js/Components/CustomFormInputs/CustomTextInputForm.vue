@@ -2,7 +2,7 @@
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
-import { InputForm } from "@/Classes/Forms";
+import { InputForm } from "@/Interfaces/Forms";
 
 const props = defineProps<{
   input: InputForm,
