@@ -10,11 +10,11 @@ const { translate } = useTranslation();
 const props = withDefaults(
   defineProps<{
     form: CustomisableForm;
-    form_cols?: number;
+    form_cols?: string;
     show_actions?: boolean;
   }>(),
   {
-    form_cols: 4,
+    form_cols: "4",
     show_actions: false,
   }
 );

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class GetModulesRequest extends FormRequest
+class StoreModuleRequest extends FormRequest
 {
   /**
    * Determine if the user is authorized to make this request.
@@ -22,8 +22,10 @@ class GetModulesRequest extends FormRequest
   public function rules(): array
   {
     return [
-      'q' => ['nullable', 'regex:/^[a-zA-Z\s]+$/'],
+      'route' => ['required', 'regex:/^[a-zA-Z\.s]+$/'],
+      'description' => ['required', 'regex:/^[a-zA-Z\sáéíóúÁÉÍÓÚ]+$/'],
+      'title' => ['required', 'regex:/^[a-zA-Z\s]+$/'],
+      'label' => ['required', 'regex:/^[a-zA-Z\s]+$/'],
     ];
   }
-
 }

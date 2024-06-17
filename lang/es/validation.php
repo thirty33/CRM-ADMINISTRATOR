@@ -9,4 +9,9 @@ return [
   'attributes' => [
     'q' => 'buscar',
   ],
+  'custom' => [
+    'q' => [
+      'regex' => 'El campo :attribute sólo debe contener caracteres y espacios',
+    ],
+  ],
 ];

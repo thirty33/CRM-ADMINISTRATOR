@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import _ from "lodash";
-import { inject, computed } from "vue";
+import { computed } from "vue";
 import { usePage, router } from "@inertiajs/vue3";
 
-import CustomForm from '@/Components/CustomForm.vue';
+import CustomForm from "@/Components/CustomForm.vue";
 import CustomTextInputForm from "@/Components/CustomFormInputs/CustomTextInputForm.vue";
 import { InputFormBuilder, CustomisableForm } from "@/Classes/Forms";
 import { Module } from "@/Interfaces/Module.ts";
@@ -12,18 +12,11 @@ const page = usePage();
 const errors = computed(() => page.props.errors);
 
 const props = defineProps<{
-  module: Module
+  module: Module;
 }>();
 
-// const getPage = inject("getPageProgramatically") as ({}) => void;
-// const getQueryParams = inject("transformQueryParamsFromRoute") as () => {
-//   [key: string]: string;
-// };
-
-// let queryParams = getQueryParams();
-
 const form = new CustomisableForm({
-  ...props.module
+  ...props.module,
 });
 
 form.inputFormList = [
@@ -73,15 +66,22 @@ form.inputFormList = [
     .getItem(),
 ];
 
-
 function submit() {
-  router.patch(route('module.update', props.module.id), form.formState)
+  router.patch(route("module.update", props.module.id), form.formState, {
+    preserveState: (page: any) => {
+      return page.props.errors.length >= 0;
+    },
+  });
 }
-
 </script>
 
 <template>
   <div class="p-4">
-    <CustomForm :form="form" :form_cols="2" :show_actions="true" @submit="submit"/>
+    <CustomForm
+      :form="form"
+      form_cols="2"
+      :show_actions="true"
+      @submit="submit"
+    />
   </div>
 </template>

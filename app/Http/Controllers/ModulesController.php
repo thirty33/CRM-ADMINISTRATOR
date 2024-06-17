@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Classes\ListDataRepositoryCreator;
 use Illuminate\Http\Request;
 use App\Http\Requests\GetModulesRequest;
+use App\Http\Requests\StoreModuleRequest;
 use Inertia\Inertia;
 use App\Models\Module;
 
@@ -47,18 +48,11 @@ class ModulesController extends Controller
   /**
    * Update the specified resource in storage.
    */
-  public function update(Request $request, Module $module)
+  public function update(StoreModuleRequest $request, Module $module)
   {
-
-    dd(['1' => $request->all()]);
-    // $request->validate([
-    //   'excerpt' => 'required',
-    //   'content' => 'required'
-    // ]);
-
     $module->update($request->all());
 
-    return redirect()->route('notes.index');
+    return redirect()->route('module.index');
       // ->with('status', 'item updated');
   }
 }

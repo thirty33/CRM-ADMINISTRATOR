@@ -1,7 +1,7 @@
 import { Component, reactive, watch } from "vue";
 import { v4 as uuidv4 } from 'uuid';
 import { InputForm, FormItemBuilder } from '@/Interfaces/Forms';
-
+import { useForm } from '@inertiajs/vue3'
 export class Input implements InputForm {
 
   public labelName?: string;
@@ -104,6 +104,7 @@ export class CustomisableForm {
 
   private _inputFormList: InputForm[] = [];
   private _formState = reactive({});
+  // private _formState = useForm({});
 
   constructor(state: stateObject) {
     this.formState = state;
@@ -119,9 +120,11 @@ export class CustomisableForm {
 
   public set formState(state: stateObject) {
     this._formState = reactive(state);
+    // this._formState = useForm(state);
   }
 
   public get formState(): stateObject {
+  // public get formState(): any {
     return this._formState;
   }
 

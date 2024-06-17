@@ -191,5 +191,9 @@ return [
     'attributes' => [
       'q' => 'search',
     ],
-
+    'custom' => [
+      'q' => [
+        'regex' => 'The :attribute field must only contain characters and spaces.',
+      ],
+    ],
 ];
